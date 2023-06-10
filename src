@@ -1,1 +1,37 @@
 
+
+package product.management.system;
+
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+import javax.swing.*;
+
+
+public class Conn extends JFrame{
+    public Conn(String query) {
+        try {
+            String username = "root";
+            String password = "Mysql";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/productmanagementsystem";
+            Connection connection = DriverManager.getConnection(url, username, password);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                setVisible(false);
+                
+            }
+            else
+                JOptionPane.showMessageDialog(null, "invalid ");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+    
+    
+
